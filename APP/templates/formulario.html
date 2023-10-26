@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Carga</title>
+    <style>
+        /* estilo.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.container h1 {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+}
+
+/* Ajustamos el margen superior del primer label e input */
+.container label:first-child,
+.container input:first-child {
+    margin-top: 80px; /* Ajusta la cantidad de separación que deseas */
+}
+
+/* Ajustamos el margen superior de los campos de entrada */
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #aaa;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Carga</h1>
+        <form action="/procesar" method="POST">
+            <label for="hora_ini">Hora de inicio:</label>
+            <input type="number" name="hora_ini" required>
+            
+            <label for="hora_fin">Hora de fin:</label>
+            <input type="number" name="hora_fin" required>
+            
+            <label for="intervalo">Intervalo:</label>
+            <input type="number" name="intervalo" required>
+
+            <label for="base_de_datos">Nombre Base de datos:</label>
+            <input type="text" name="base_de_datos" required>
+
+            <label for="domingos">Domingos:</label>
+            <input type="number" name="domingos" placeholder="Si la Operacion Trabaja los domingos 1 de contrario 0" required>
+
+            <label for="festivos">Festivos:</label>
+            <input type="number" name="festivos" placeholder="Si la Operacion Trabaja los Festivos 1 de contrario 0" required>
+
+            <label for="tabla">Tabla:</label>
+            <input type="text" name="tabla" placeholder="Tabla Alimenta el Informe" required>
+
+            <label for="campo_fecha">Campo Fecha:</label>
+            <input type="text" name="campo_fecha" placeholder="Campo Fecha de la Tabla" required>
+
+            <label for="campo_hora">Campo Hora:</label>
+            <input type="text" name="campo_hora" placeholder="Campo Hora de la Tabla" required>
+            
+            <label for="sp_name">Nombre SP:</label>
+            <input type="text" name="sp_name" placeholder="sp name que Alimenta al Tabla Solo nombre" required>
+
+            <label for="nombre_infrome">Nombre Informe:</label>
+            <input type="text" name="nombre_infrome" placeholder="Ingresa Nombre del Informe" required>
+            
+            <label for="usu_telegram">Usuario Telegram:</label>
+            <input type="text" name="usu_telegram" placeholder="Ingresa tu Usuario Telegram" required>
+
+            <label for="nombre_reporting">Nombre Reporting:</label>
+            <input type="text" name="nombre_reporting" placeholder="Ingresa tu Nombre" required>
+
+            <label for="host">Host: :</label>
+            <input type="text" name="host" placeholder="Ingresa Direccion ip Servidor" required>
+
+            <label for="Hora_ejecucion">Hora Ejecucion: :</label>
+            <input type="number" name="Hora_ejecucion" placeholder="Ingresa Hora en la que deseas verificación" required>
+            <!-- Agrega más campos aquí -->
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <script>
+        // Esta función mostrará la alerta y redireccionará después de unos segundos
+        function mostrarAlertaYRedirigir(success, message) {
+            if (success) {
+                alert(message);
+                console.log("Alerta mostrada y redireccionada");  // Agrega esta línea para verificar
+                window.location.href = '/';  // Redirige a la página del formulario
+            }
+        }
+    
+        // Verifica si hay un mensaje en la URL y muestra la alerta si es necesario
+        const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+        const message = urlParams.get('message');
+        mostrarAlertaYRedirigir(success === 'true', message);
+    </script>        
+</body>
+</html>
